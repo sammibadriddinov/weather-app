@@ -1,0 +1,85 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Погодное приложение</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'main/css/main.css' %}">
+</head>
+
+<body>
+
+    <div class="content">
+        <div class="right_row">
+            <h1 class="mt-5 text-center text-light">ВВЕДИТЕ ГОРОД</h1>
+            <div class="mt-5 text-center forma">
+                <form action="" method="post">
+                    {% csrf_token %}
+                    {{ form.name }}
+                    <div>
+                        <button class="learn-more mt-5 px-4" type="submit" name="send">
+                            <span class="circle" aria-hidden="true">
+                                <span class="icon arrow"></span>
+                            </span>
+                            <span class="button-text"> Узнать</span>
+                        </button>
+                    </div>
+                   
+                </form>
+            </div>
+        </div>
+        <div class="left_row">
+            <h1 class="my-5 text-center text-light">Информация</h1>
+                {% for info in all_info %}
+                <div class="alert alert-danger">
+                    <div class="row">
+                        <div class="col-9">
+                            <b>Город:</b> {{ info.city }} <br>
+                            <b>Температура:</b> {{ info.temp }} <sup>o</sup><br>
+                        </div>
+                        <div class="col-2 offset-1">
+                            <img src="http://openweathermap.org/img/w/{{ info.icon }}.png">
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+        </div>
+    </div>
+
+
+    <!-- <div class="container mt-5">
+        <div class="row">
+            <div class="col-5 offset-1">
+                <h1>Узнайте погоду</h1>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <label for="city">Город</label>
+                    {{ form.name }}
+                    <input type="submit" name="send" value="Добавить" class="mt-2 btn btn-danger">
+                </form>
+            </div>
+            <div class="col-5 offset-1">
+                <h1>Информация</h1>
+                {% for info in all_info %}
+                <div class="alert alert-info">
+                    <div class="row">
+                        <div class="col-9">
+                            <b>Город:</b> {{ info.city }} <br>
+                            <b>Температура:</b> {{ info.temp }} <sup>o</sup><br>
+                        </div>
+                        <div class="col-2 offset-1">
+                            <img src="http://openweathermap.org/img/w/{{ info.icon }}.png">
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div> -->
+</body>
+
+</html>
